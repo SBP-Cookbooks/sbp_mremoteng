@@ -9,3 +9,4 @@ version          '0.2.2'
 supports         'windows'
 
 depends          'windows'
+depends          'partial_search'
