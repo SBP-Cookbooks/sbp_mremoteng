@@ -31,7 +31,8 @@ unless node['mremoteng']['shared_config_dir'].nil?
                            'name' => ['name'],
                            'os' => ['os'],
                            'domain' => ['domain'],
-                           'env' => ['chef_environment']
+                           'env' => ['chef_environment'],
+                           'ipaddress' => ['ipaddress']
                            })
   hosts = hosts.sort_by { |host| host['hostname'].to_s }
   environments = Hash.new
