@@ -31,14 +31,14 @@ unless node['mremoteng']['shared_config_dir'].nil?
                            'name' => ['name'],
                            'os' => ['os'],
                            'domain' => ['domain'],
-                           'env' => ['chef_environment'],
+                           'chef_environment' => ['chef_environment'],
                            'ipaddress' => ['ipaddress']
                            })
   hosts = hosts.sort_by { |host| host['hostname'].to_s }
   environments = Hash.new
   hosts.each do |host|
-    environments[host['env']] = [] if environments[host['env']].nil? 
-    environments[host['env']] << host unless host['hostname'].to_s == '' 
+    environments[host['chef_environment']] = [] if environments[host['chef_environment']].nil? 
+    environments[host['chef_environment']] << host unless host['hostname'].to_s == '' 
   end
 
   directory node['mremoteng']['shared_config_dir'] do
