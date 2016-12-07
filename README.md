@@ -13,10 +13,12 @@ Attributes
 When default['mremoteng']['shared_config_dir'] is set to `nil` the cookbook will not create a confCons.xml for you. When this is set to a path, it will generate a config and update the mRemoteNG config so it uses the generated configuration.
 
 default['mremoteng']['package_name']      = 'mRemoteNG'
-default['mremoteng']['url']               = 'http://downloads.mremoteng.org/mRemoteNG-Installer-1.72.exe'
-default['mremoteng']['checksum']          = 'b2978c2512e5b5eb1d308ecff0494875670cc0b45e611484368ea434e47a83d4'
-default['mremoteng']['install_dir']       = 'C:\Program Files\mRemoteNG'
+default['mremoteng']['install_dir']       = 'C:\Program Files (x86)\mRemoteNG'
+default['mremoteng']['version']           = '1.74.6023.15437'
+default['mremoteng']['url']               = 'https://github.com/mRemoteNG/mRemoteNG/releases/download/v1.74/mRemoteNG-Installer-1.74.6023.15437.msi'
+default['mremoteng']['checksum']          = '2d637780be5875221448dc259ce8ae8f5f9fc95adc87a2571610e305826df6a3'
 default['mremoteng']['shared_config_dir'] = nil
+default['mremoteng']['auto_expand']       = 'True'
 
 
 Usage
