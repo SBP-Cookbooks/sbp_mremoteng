@@ -18,7 +18,7 @@
 windows_package node['mremoteng']['package_name'] do
   source node['mremoteng']['url']
   checksum node['mremoteng']['checksum']
-  options "APPLICATIONROOTDIRECTORY=\"#{node['mremoteng']['install_dir']}\""
+  options "APPLICATIONROOTDIRECTORY='#{node['mremoteng']['install_dir']}'"
   version node['mremoteng']['version']
   installer_type :msi
   action :install
@@ -56,7 +56,7 @@ unless node['mremoteng']['shared_config_dir'].nil?
   end
 
   template "#{node['mremoteng']['install_dir']}\\mRemoteNG.exe.config" do
-    source 'mRemoteNG.exe.config-1.74.6023.15437.erb'
+    source 'mRemoteNG.exe.config.erb'
     variables(
       :recipe_file => (__FILE__).to_s.split("cookbooks/").last,
       :template_file => source.to_s,
