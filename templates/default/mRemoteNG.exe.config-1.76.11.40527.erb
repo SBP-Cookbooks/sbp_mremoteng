@@ -13,16 +13,17 @@
 <configuration>
   <configSections>
     <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"/>
-    <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
-      <section name="mRemoteNG.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+    <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="mRemoteNG.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false"/>
     </sectionGroup>
-    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
-      <section name="mRemoteNG.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="mRemoteNG.Resources.Themes.ColorMap" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false"/>
+      <section name="mRemoteNG.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false"/>
     </sectionGroup>
   </configSections>
   <log4net>
     <logger name="Logger">
-      <level value="INFO"/>
+      <level value="DEBUG"/>
     </logger>
 
     <root>
@@ -30,18 +31,16 @@
       <appender-ref ref="LogFileAppender"/>
     </root>
 
-    <appender name="LogFileAppender" type="log4net.Appender.FileAppender">
+    <appender name="LogFileAppender" type="log4net.Appender.RollingFileAppender">
       <file value="${APPDATA}\mRemoteNG\mRemoteNG.log"/>
-      <!-- Example using environment variables in params -->
-      <!-- <file value="${TMP}\log-file.txt" /> -->
       <appendToFile value="true"/>
-      <!-- An alternate output encoding can be specified -->
-      <!-- <encoding value="unicodeFFFE" /> -->
+      <rollingStyle value="Size"/>
+      <maxSizeRollBackups value="5"/>
+      <maximumFileSize value="10MB"/>
+      <staticLogFileName value="true"/>
       <layout type="log4net.Layout.PatternLayout">
-        <conversionPattern value="%date [%thread] %-5level- %message%newline"/>
+        <conversionPattern value="%date [%thread] %-6level- %message%newline"/>
       </layout>
-      <!-- Alternate layout using XML           
-                <layout type="log4net.Layout.XMLLayout" /> -->
     </appender>
   </log4net>
 
@@ -65,9 +64,6 @@
       <setting name="CustomPuttyPath" serializeAs="String">
         <value />
       </setting>
-      <setting name="ShowNoMessageBoxes" serializeAs="String">
-        <value>True</value>
-      </setting>
       <setting name="SwitchToMCOnInformation" serializeAs="String">
         <value>True</value>
       </setting>
@@ -83,7 +79,7 @@
       <setting name="LoadConsFromCustomLocation" serializeAs="String">
         <value>False</value>
       </setting>
-        <setting name="CustomConsPath" serializeAs="String">
+      <setting name="CustomConsPath" serializeAs="String">
         <value><%= @shared_config_dir %>\confCons.xml</value>
       </setting>
       <setting name="SaveConsOnExit" serializeAs="String">
@@ -119,9 +115,6 @@
       <setting name="DefaultDomain" serializeAs="String">
         <value />
       </setting>
-      <setting name="WriteLogFile" serializeAs="String">
-        <value>True</value>
-      </setting>
       <setting name="UseCustomPuttyPath" serializeAs="String">
         <value>False</value>
       </setting>
@@ -153,15 +146,6 @@
         <value />
       </setting>
       <setting name="ConDefaultDescription" serializeAs="String">
-        <value />
-      </setting>
-      <setting name="ConDefaultUsername" serializeAs="String">
-        <value />
-      </setting>
-      <setting name="ConDefaultPassword" serializeAs="String">
-        <value />
-      </setting>
-      <setting name="ConDefaultDomain" serializeAs="String">
         <value />
       </setting>
       <setting name="ConDefaultProtocol" serializeAs="String">
@@ -464,9 +448,6 @@
       <setting name="InhDefaultExtApp" serializeAs="String">
         <value>False</value>
       </setting>
-      <setting name="LastAnnouncement" serializeAs="String">
-        <value />
-      </setting>
       <setting name="CheckForUpdatesAsked" serializeAs="String">
         <value>False</value>
       </setting>
@@ -560,6 +541,9 @@
       <setting name="IdentifyQuickConnectTabs" serializeAs="String">
         <value>False</value>
       </setting>
+      <setting name="UpdateChannel" serializeAs="String">
+        <value>release</value>
+      </setting>
       <setting name="ThemeName" serializeAs="String">
         <value />
       </setting>
@@ -599,26 +583,153 @@
       <setting name="ShowCompleteConsPathInTitle" serializeAs="String">
         <value>False</value>
       </setting>
+      <setting name="ConRDPOverallConnectionTimeout" serializeAs="String">
+        <value>20</value>
+      </setting>
+      <setting name="EncryptionEngine" serializeAs="String">
+        <value>AES</value>
+      </setting>
+      <setting name="EncryptionBlockCipherMode" serializeAs="String">
+        <value>GCM</value>
+      </setting>
+      <setting name="EncryptionKeyDerivationIterations" serializeAs="String">
+        <value>1000</value>
+      </setting>
+      <setting name="ConDefaultSoundQuality" serializeAs="String">
+        <value>Dynamic</value>
+      </setting>
+      <setting name="InhDefaultSoundQuality" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="ConDefaultRDPMinutesToIdleTimeout" serializeAs="String">
+        <value>0</value>
+      </setting>
+      <setting name="InhDefaultRDPMinutesToIdleTimeout" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="ConDefaultRDPAlertIdleTimeout" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="InhDefaultRDPAlertIdleTimeout" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="InhDefaultCredentialRecord" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="ConDefaultCredentialRecord" serializeAs="String">
+        <value>00000000-0000-0000-0000-000000000000</value>
+      </setting>
+      <setting name="LogFilePath" serializeAs="String">
+        <value />
+      </setting>
+      <setting name="TextLogMessageWriterWriteDebugMsgs" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="TextLogMessageWriterWriteInfoMsgs" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="TextLogMessageWriterWriteWarningMsgs" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="TextLogMessageWriterWriteErrorMsgs" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="NotificationPanelWriterWriteDebugMsgs" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="NotificationPanelWriterWriteInfoMsgs" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="NotificationPanelWriterWriteWarningMsgs" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="NotificationPanelWriterWriteErrorMsgs" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="PopupMessageWriterWriteDebugMsgs" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="PopupMessageWriterWriteInfoMsgs" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="PopupMessageWriterWriteWarningMsgs" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="PopupMessageWriterWriteErrorMsgs" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="LogToApplicationDirectory" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="PromptUnlockCredReposOnStartup" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="ThemingActive" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="ConDefaultUsername" serializeAs="String">
+        <value />
+      </setting>
+      <setting name="ConDefaultPassword" serializeAs="String">
+        <value />
+      </setting>
+      <setting name="ConDefaultDomain" serializeAs="String">
+        <value />
+      </setting>
+      <setting name="ConDefaultPanel" serializeAs="String">
+        <value>General</value>
+      </setting>
+      <setting name="SaveConnectionsAfterEveryEdit" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="UseFilterSearch" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="SQLReadOnly" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="LockToolbars" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="RdpLoadBalanceInfoUseUtf8" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="MultiSshToolbarLocation" serializeAs="String">
+        <value>0, 0</value>
+      </setting>
+      <setting name="MultiSshToolbarParentDock" serializeAs="String">
+        <value />
+      </setting>
+      <setting name="MultiSshToolbarVisible" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="CreateEmptyPanelOnStartUp" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="StartUpPanelName" serializeAs="String">
+        <value>General</value>
+      </setting>
     </mRemoteNG.Settings>
   </userSettings>
   <applicationSettings>
     <mRemoteNG.Settings>
-      <setting name="SupportedUICultures" serializeAs="String">
-        <value>de,el,en,en-US,es-AR,es,fr,hu,it,ja-JP,nb-NO,nl,pt,pt-BR,pl,ru,uk,zh-CN,zh-TW</value>
-      </setting>
-      <setting name="UpdateChannel" serializeAs="String">
-        <value>release</value>
-      </setting>
-      <setting name="AnnouncementAddress" serializeAs="String">
-        <value>https://update.mremoteng.org/announcement.txt</value>
-      </setting>
       <setting name="UpdateAddress" serializeAs="String">
-        <value>https://update.mremoteng.org/</value>
+        <value>https://mremoteng.org/</value>
+      </setting>
+      <setting name="SupportedUICultures" serializeAs="String">
+        <value>cs-CZ,de,el,en,en-US,es-AR,es,fr,hu,it,ja-JP,ko-KR,nb-NO,nl,pt,pt-BR,pl,ru,uk,tr-TR,zh-CN,zh-TW</value>
       </setting>
     </mRemoteNG.Settings>
   </applicationSettings>
   
   <runtime>
-    <generatePublisherEvidence enabled="false"/>
+  	<generatePublisherEvidence enabled="false"/>
+       <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+          <dependentAssembly>
+             <assemblyIdentity name="WeifenLuo.WinFormsUI.Docking" publicKeyToken="5cded1a1a0a7b481" culture="neutral"/>
+             <bindingRedirect oldVersion="0.0.0.0-2.16.0.0" newVersion="2.16.0.0"/>
+          </dependentAssembly>
+       </assemblyBinding>
+  
   </runtime>
-</configuration>
+<startup><supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6"/></startup></configuration>
