@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: sbp_mremoteng
+# Cookbook:: sbp_mremoteng
 # Recipe:: default
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,21 +25,21 @@ windows_package node['mremoteng']['package_name'] do
 end
 
 unless node['mremoteng']['shared_config_dir'].nil?
-  hosts = partial_search(:node, 
-                         "name:*",
-                         :keys => { 
-                           'hostname' => ['hostname'],
-                           'name' => ['name'],
-                           'os' => ['os'],
-                           'domain' => ['domain'],
-                           'chef_environment' => ['chef_environment'],
-                           'ipaddress' => ['ipaddress']
-                           })
+  hosts = search(:node,
+                  'name:*',
+                  keys: {
+                    'hostname' => ['hostname'],
+                    'name' => ['name'],
+                    'os' => ['os'],
+                    'domain' => ['domain'],
+                    'chef_environment' => ['chef_environment'],
+                    'ipaddress' => ['ipaddress'],
+                    })
   hosts = hosts.sort_by { |host| host['hostname'].to_s }
-  environments = Hash.new
+  environments = {}
   hosts.each do |host|
-    environments[host['chef_environment']] = [] if environments[host['chef_environment']].nil? 
-    environments[host['chef_environment']] << host unless host['hostname'].to_s == '' 
+    environments[host['chef_environment']] = [] if environments[host['chef_environment']].nil?
+    environments[host['chef_environment']] << host unless host['hostname'].to_s == ''
   end
 
   directory node['mremoteng']['shared_config_dir'] do
@@ -49,18 +49,18 @@ unless node['mremoteng']['shared_config_dir'].nil?
   template "#{node['mremoteng']['shared_config_dir']}\\confCons.xml" do
     source 'confCons.xml.erb'
     variables(
-      :recipe_file => (__FILE__).to_s.split("cookbooks/").last,
-      :template_file => source.to_s,
-      :environments => environments
+      recipe_file: __FILE__.to_s.split('cookbooks/').last,
+      template_file: source.to_s,
+      environments: environments
     )
   end
 
   template "#{node['mremoteng']['install_dir']}\\mRemoteNG.exe.config" do
     source "mRemoteNG.exe.config-#{node['mremoteng']['version']}.erb"
     variables(
-      :recipe_file => (__FILE__).to_s.split("cookbooks/").last,
-      :template_file => source.to_s,
-      :shared_config_dir => node['mremoteng']['shared_config_dir']
+      recipe_file: __FILE__.to_s.split('cookbooks/').last,
+      template_file: source.to_s,
+      shared_config_dir: node['mremoteng']['shared_config_dir']
     )
   end
 end

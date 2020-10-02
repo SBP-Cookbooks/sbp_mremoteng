@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: sbp_mremoteng
+# Cookbook:: sbp_mremoteng
 # Attribute:: default
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
