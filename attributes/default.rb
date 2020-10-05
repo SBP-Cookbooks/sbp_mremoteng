@@ -17,7 +17,7 @@
 
 default['mremoteng']['package_name']      = 'mRemoteNG'
 default['mremoteng']['install_dir']       = 'C:\Program Files (x86)\mRemoteNG'
-default['mremoteng']['version']           = '1.76.11.40527'
+default['mremoteng']['version']           = '1.76.20.24615'
 default['mremoteng']['url']               = 'https://github.com/mRemoteNG/mRemoteNG/releases/download/v1.76.20/mRemoteNG-Installer-1.76.20.24615.msi'
 default['mremoteng']['checksum']          = '2C4D1EFB90124F885215F88304C9ECC8BBEECC9CCA285F6D17BAAE43B49F6227'
 default['mremoteng']['shared_config_dir'] = nil
