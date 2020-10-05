@@ -27,7 +27,7 @@ end
 unless node['mremoteng']['shared_config_dir'].nil?
   hosts = search(:node,
                   'name:*',
-                  keys: {
+                  filter_result: {
                     'hostname' => ['hostname'],
                     'name' => ['name'],
                     'os' => ['os'],
