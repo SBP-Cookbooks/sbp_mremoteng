@@ -1,9 +1,11 @@
 name             'sbp_mremoteng'
-maintainer       'Ane van Straten'
-maintainer_email 'avanstraten@schubergphilis.com'
+maintainer       'Schuberg Philis Cookbooks'
+maintainer_email 'cookbooks@schubergphils.com'
 license          'Apache-2.0'
-description      'Installs/Configures mRemoteNG'
+description      'Installs and configures mRemoteNG'
+source_url       'https://github.com/SBP-Cookbooks/sbp_mremoteng'
+issues_url       'https://github.com/SBP-Cookbooks/sbp_mremoteng/issues'
 version          '1.0.0'
+chef_version     '>= 14'
 
 supports         'windows'
-
