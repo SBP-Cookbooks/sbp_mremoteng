@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: sbp_mremoteng
+# Cookbook:: sbp_mremoteng
 # Attribute:: default
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,8 +17,8 @@
 
 default['mremoteng']['package_name']      = 'mRemoteNG'
 default['mremoteng']['install_dir']       = 'C:\Program Files (x86)\mRemoteNG'
-default['mremoteng']['version']           = '1.76.11.40527'
-default['mremoteng']['url']               = 'https://github.com/mRemoteNG/mRemoteNG/releases/download/v1.76.11/mRemoteNG-Installer-1.76.11.40527.msi'
-default['mremoteng']['checksum']          = 'ac0e3d6fab0d93e8bc51f656d476b8dda3a5451d796d6a8659feb49f9e0d3c2b'
+default['mremoteng']['version']           = '1.76.20.24615'
+default['mremoteng']['url']               = 'https://github.com/mRemoteNG/mRemoteNG/releases/download/v1.76.20/mRemoteNG-Installer-1.76.20.24615.msi'
+default['mremoteng']['checksum']          = '2C4D1EFB90124F885215F88304C9ECC8BBEECC9CCA285F6D17BAAE43B49F6227'
 default['mremoteng']['shared_config_dir'] = nil
 default['mremoteng']['auto_expand']       = 'True'
